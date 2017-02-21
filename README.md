@@ -7,7 +7,7 @@ This plugin is still in it's very early stages and is not recommended for use on
 
 
 #### To Do:
-1. Add wp-admin options pages:
+1. Add wp-admin options pages (located on Overview page):
 	* Ability to add Terms of Service document + content within WYSIWYG editor
 	* Ability to add form title & introduction
 	* Ability to choose which form fields are present
@@ -17,4 +17,5 @@ This plugin is still in it's very early stages and is not recommended for use on
 	* Ability to choose what kind of documents to "gate"
 		* PDF, DOCX, RTF, HTML, JPG, PNG, GIF, etc..
 2. Build out User Activity Tracking overview page (currently dummy data)
+	* Will contain the Options forms.
 3. Add sorting/searching functions to Users & Downloads page.
