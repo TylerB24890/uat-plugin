@@ -46,6 +46,7 @@ if(!class_exists('UAT')) :
 
 			if(is_admin())
 				require_once UAT_GLOBAL_DIR . 'inc/admin/class-uat-admin.php';
+				require_once UAT_GLOBAL_DIR . 'inc/admin/class-uat-admin-settings.php';
 
 			wp_enqueue_script( 'uat-jquery-cookie', UAT_GLOBAL_URL . 'inc/frontend/assets/jquery.cookie.js', array('jquery'), '2.1.4', true );
 			wp_enqueue_script( 'uat-js', UAT_GLOBAL_URL . 'inc/frontend/assets/uat.js', array('jquery', 'uat-jquery-cookie'), UAT_VERSION, true );

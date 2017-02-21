@@ -33,6 +33,12 @@
 	</table>
 
 	<div id="settings" style="margin-top: 30px; background: #FFF; padding: 15px;">
-		<h3>UAT Settings Section Will Be Here</h3>
+		<form method="POST" action="options.php">
+			<?php
+			settings_fields('uat_options');
+			do_settings_sections('uat-form');
+			submit_button();
+			?>
+		</form>
 	</div>
 </div>
