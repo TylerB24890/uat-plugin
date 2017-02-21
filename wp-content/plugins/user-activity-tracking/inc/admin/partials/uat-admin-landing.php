@@ -20,12 +20,19 @@
 		<tbody>
 			<tr>
 				<td>
-					120
+					[TOTAL DOWNLOADS HERE]
 				</td>
 				<td>
-					<?php echo sprintf('<a href="%s" target="_blank">%s</a>', 'http://m73vsl512x3rl0lq49z7i8zx.wpengine.netdna-cdn.com/wp-content/uploads/press-export/by-the-grace-of-god-pediatric-cardiac-arrest-best-save.rtf', 'by-the-grace-of-god-pediatric-cardiac-arrest-best-save.rtf'); ?>
+					[FILE NAME HERE]
+				</td>
+				<td>
+					[MOST ACTIVE USER HERE]
 				</td>
 			</tr>
 		</tbody>
 	</table>
+
+	<div id="settings" style="margin-top: 30px; background: #FFF; padding: 15px;">
+		<h3>UAT Settings Section Will Be Here</h3>
+	</div>
 </div>
