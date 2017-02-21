@@ -14,6 +14,7 @@
 # Ignore everything in the root except the "wp-content" directory.
 /*
 !.gitignore
+!README.md
 !wp-content/
 
 # Ignore everything in the "wp-content" directory, except the "plugins"
