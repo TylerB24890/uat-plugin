@@ -4,3 +4,15 @@ A simple alternative to WordPress user management that includes user activity mo
 
 ### Note:
 This plugin is still in it's very early stages and is not recommended for use on any production environment.
+
+
+#### To Do:
+1. Add wp-admin options pages
+	* Ability to add Terms of Service document + content within WYSIWYG editor
+	* Ability to add form title & introduction
+	* Ability to choose which form fields are present
+		* Will require changing DB tables to allow `NULL` values.
+	* Ability to choose to include Bootstrap forms & modal windows within plugin styles
+		* Eventually add ability to add custom styles.
+2. Build out User Activity Tracking overview page (currently dummy data)
+3. Add sorting/searching functions to Users & Downloads page.
