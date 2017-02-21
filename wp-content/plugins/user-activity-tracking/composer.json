@@ -1,0 +1,14 @@
+{
+	"name": "User Activity Tracking",
+	"description": "A passwordless login system used to track user activity and downloads",
+	"keywords": ["cookies", "passwordless", "login", "activty", "download", "monitor"],
+	"license": "GPL-2.0+",
+	"authors": [
+		{
+			"name": "Tyler Bailey",
+			"email": "tylerb.media@gmail.com",
+			"homepage": "http://tylerb.me"
+		}
+	],
+	"type": "wordpress-plugin"
+}
