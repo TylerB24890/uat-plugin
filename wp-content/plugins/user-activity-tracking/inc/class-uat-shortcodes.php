@@ -12,7 +12,7 @@
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 if(!class_exists('UAT_Shortcodes')) :
-	
+
 	class UAT_Shortcodes {
 
 		/**
@@ -44,8 +44,15 @@ if(!class_exists('UAT_Shortcodes')) :
 		 * @since    1.0.0
 		 */
 		public function uat_display_login_form($atts) {
-			wp_enqueue_style('uat-login-style', UAT_GLOBAL_URL . 'inc/frontend/assets/style.css');
-			wp_enqueue_script( 'uat-modal-js', UAT_GLOBAL_URL . 'inc/frontend/assets/uat-modal.js', array('jquery', 'uat-js'), '1.0.0', true );
+			$inc_styles = get_option('uat_styles');
+
+			if($inc_styles && $inc_styles == 1) {
+				wp_enqueue_style('bootstrap-css', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
+				wp_enqueue_style('uat-login-style', UAT_GLOBAL_URL . 'inc/frontend/assets/style.css');
+			}
+
+			wp_enqueue_script( 'bootstrap-js', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', array('jquery'), '3.3.7', true);
+			wp_enqueue_script( 'uat-modal-js', UAT_GLOBAL_URL . 'inc/frontend/assets/uat-modal.js', array('jquery', 'uat-js', 'bootstrap-js'), '1.0.0', true );
 			include_once(UAT_GLOBAL_DIR . 'inc/frontend/uat-login-form.php');
 		}
 
