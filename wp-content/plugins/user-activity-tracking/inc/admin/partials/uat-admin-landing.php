@@ -36,7 +36,7 @@
 		<form method="POST" action="options.php">
 			<?php
 			settings_fields('uat_options');
-			do_settings_sections('uat-form');
+			do_settings_sections('uat');
 			submit_button();
 			?>
 		</form>

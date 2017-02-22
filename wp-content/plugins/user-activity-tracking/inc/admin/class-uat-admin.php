@@ -85,7 +85,6 @@ if(!class_exists('UAT_Admin')) :
 		*/
 		public function uat_main_menu_page_render() {
 			$this->uat_enqueue_styles();
-
 			include_once(UAT_GLOBAL_DIR . 'inc/admin/partials/uat-admin-landing.php');
 		}
 
