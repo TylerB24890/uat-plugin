@@ -45,26 +45,33 @@
 
 					<?php wp_nonce_field('uat_login', 'uat_nonce'); ?>
 
-					<div class="form-group">
-						<div id="license-agreement">
-							DYNAMIC LICENSE AGREEMENT HERE
+					<?php
+						$license = get_option('uat_license');
+						if($license && strlen($license) > 1) :
+					?>
+						<div class="form-group">
+							<div id="license-agreement">
+								<?php echo $license; ?>
+							</div>
 						</div>
-					</div>
+					<?php endif; ?>
 				</div>
 				<div class="modal-footer">
-					<!-- IF USER CHOOSES TO ENTER LICENSE AGREEMENT AND REQUIRE ACCEPTANCE -->
-					<div id="agreement">
-						<div class="col-md-6 no-padding text-left">
-							<label><input type="checkbox" name="agree" id="agree" value="1" style="position: relative; bottom: 2px;" required/><span for="agree"></span> <?php _e('I agree to the License Terms.', UAT_SLUG); ?></label>
+					
+					<?php if($license && strlen($license) > 1) : ?>
+						<div id="agreement">
+							<div class="col-md-6 no-padding text-left">
+								<label><input type="checkbox" name="agree" id="agree" value="1" style="position: relative; bottom: 2px;" required/><span for="agree"></span> <?php _e('I agree to the License Terms.', UAT_SLUG); ?></label>
+							</div>
+							<div class="col-md-6 no-padding text-right">
+								<i class="fa fa-print"></i><a href="#" id="print-tos"><?php _e('Print License Terms', UAT_SLUG); ?></a>
+							</div>
 						</div>
-						<div class="col-md-6 no-padding text-right">
-							<i class="fa fa-print"></i><a href="#" id="print-tos"><?php _e('Print License Terms', UAT_SLUG); ?></a>
-						</div>
-					</div>
+					<?php endif; ?>
 
 					<div class="clear clearfix"></div>
 					<!-- END LICENSE AGREEMENT CONDITIONAL -->
-					
+
 					<div class="form-group text-center">
 						<input type="submit" class="btn btn-primary" value="<?php _e('Submit', UAT_SLUG); ?>" />
 					</div>
