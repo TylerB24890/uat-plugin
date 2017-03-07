@@ -85,6 +85,12 @@ if(!class_exists('UAT')) :
 			));
 		}
 
+		/**
+		 * Adds script to every post content
+		 *
+		 * @return 	null
+		 * @since   1.0.0
+		 */
 		public function uat_add_footer_script() {
 			global $post;
 
