@@ -10,7 +10,7 @@
 					<?php _e('Total Downloads', UAT_SLUG); ?>
 				</th>
 				<th>
-					<?php _e('Most Popular', UAT_SLUG); ?>
+					<?php _e('Most Popular Post', UAT_SLUG); ?>
 				</th>
 				<th>
 					<?php _e('Most Active User', UAT_SLUG); ?>
@@ -20,13 +20,13 @@
 		<tbody>
 			<tr>
 				<td>
-					[TOTAL DOWNLOADS HERE]
+					<?php echo do_shortcode('[uat_admin_counts]'); ?>
 				</td>
 				<td>
-					[FILE NAME HERE]
+					<?php echo do_shortcode('[uat_admin_counts post = true]'); ?>
 				</td>
 				<td>
-					[MOST ACTIVE USER HERE]
+					<?php echo do_shortcode('[uat_admin_counts user = true]'); ?>
 				</td>
 			</tr>
 		</tbody>

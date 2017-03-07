@@ -157,6 +157,102 @@ if(!class_exists('UAT_Database_Management')) :
 		}
 
 		/**
+		 * Admin Counts
+		 *
+		 * Used to display the shortcode data
+		 *
+		 * @param	 $doc_post bool
+		 * @param	 $user bool
+		 * @since    1.0.0
+		 */
+		public function uat_admin_counts($doc_post, $user) {
+			if($doc_post) {
+				$downloads = $this->uat_get_popular_post();
+			} elseif($user) {
+				$downloads = $this->uat_get_popular_user();
+			} else {
+				$downloads = $this->uat_get_total_downloads();
+			}
+
+			$downloads = ($downloads ? $downloads : __('No Downloads', UAT_SLUG));
+
+			echo $downloads;
+		}
+
+		/**
+		 * Get total downloads
+		 *
+		 * @since    1.0.0
+		 */
+		public function uat_get_total_downloads() {
+			$downloads = $this->wpdb->get_var("SELECT COUNT(*) FROM $this->download_table");
+
+			if($downloads) {
+				return sprintf('<a href="?page=%s">%s</a>', 'uat-downloads', $downloads);
+			}
+
+			return false;
+		}
+
+		/**
+		 * Get the post with the most downloads
+		 *
+		 * @since    1.0.0
+		 */
+		public function uat_get_popular_post() {
+			$sql = "SELECT doc_post FROM $this->download_table";
+			$all_dls = $this->uat_get_downloads_by('custom', $sql);
+
+			$dl_arr = array();
+
+			foreach($all_dls as $k => $p) {
+				$dl_arr[$k] = $p->doc_post;
+			}
+
+			$count = array_count_values($dl_arr);
+			asort($count);
+			end($count);
+
+			$post_id = key($count);
+
+			if($all_dls) {
+				return sprintf('<a href="?page=%s&pid=%s">%s</a> (%s)', 'uat-downloads', $post_id, get_the_title($post_id), $count[$post_id]);
+			}
+
+			return false;
+		}
+
+		/**
+		 * Get user with the most downloads
+		 *
+		 * @since    1.0.0
+		 */
+		public function uat_get_popular_user() {
+			$sql = "SELECT user_id FROM $this->download_table";
+			$all_dls = $this->uat_get_downloads_by('custom', $sql);
+
+			$dl_arr = array();
+
+			foreach($all_dls as $k => $p) {
+				$dl_arr[$k] = $p->user_id;
+			}
+
+			$count = array_count_values($dl_arr);
+			asort($count);
+			end($count);
+
+			$user_id = key($count);
+
+			$user_data = $this->uat_get_user_by($user_id);
+
+			if($all_dls) {
+				return sprintf('<a href="?page=%s&user=%s">%s</a> (%s)', 'uat-downloads', $user_id, $user_data->first_name . ' ' . $user_data->last_name, $count[$user_id]);
+			}
+
+			return false;
+		}
+
+		/**
 		 * Executes necessary AJAX response for WP
 		 *
 		 * @param	 $resp - array - ajax response to send to browser
