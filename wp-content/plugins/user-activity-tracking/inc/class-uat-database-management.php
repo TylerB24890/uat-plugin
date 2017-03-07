@@ -60,8 +60,20 @@ if(!class_exists('UAT_Database_Management')) :
 		 * @return	 bool
 		 * @since    1.0.0
 		 */
-		public function uat_delete_user($user_id) {
+		public function uat_delete_user($users) {
+			if(is_array($users)) {
+				foreach($users as $user) {
+					$this->wpdb->delete($this->user_table, array('id' => $user));
+				}
+			} else {
+				$this->wpdb->delete($this->user_table, array('id' => $users));
+			}
 
+			if($this->wpdb->last_error) {
+				return false;
+			}
+
+			return true;
 		}
 
 		/**

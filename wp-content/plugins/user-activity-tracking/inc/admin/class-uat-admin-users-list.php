@@ -27,7 +27,11 @@ if(!class_exists('UAT_Admin_Users_List')) :
         * @since    1.0.0
         */
         public function __construct() {
-            parent::__construct();
+            parent::__construct(array(
+                'singluar' => 'user',
+                'plural' => 'users',
+                'ajax' => true
+            ));
         }
 
         /**
@@ -39,6 +43,7 @@ if(!class_exists('UAT_Admin_Users_List')) :
             $columns = $this->get_columns();
             $hidden = array();
             $sortable = array();
+            $this->process_bulk_action();
             $this->_column_headers = array($columns, $hidden, $sortable);
             $this->items = $this->uat_prepare_user_data($per_page);
         }
@@ -99,7 +104,7 @@ if(!class_exists('UAT_Admin_Users_List')) :
         */
         public function get_bulk_actions() {
             $actions = array(
-                'delete' => __('Delete', UAT_SLUG),
+                'uat_bulk_delete' => __('Delete', UAT_SLUG),
             );
 
             return $actions;
@@ -158,11 +163,22 @@ if(!class_exists('UAT_Admin_Users_List')) :
         function column_user_name($item) {
             $actions = array(
                 'edit'      => sprintf('<a href="?page=%s&action=%s&user=%s">' . __('Edit', UAT_SLUG) . '</a>', $_REQUEST['page'], 'edit', $item['ID']),
-                'delete'    => sprintf('<a href="?page=%s&action=%s&user=%s">' . __('Delete', UAT_SLUG) . '</a>', $_REQUEST['page'], 'delete', $item['ID']),
+                'uat_delete'    => sprintf('<a href="?page=%s&action=%s&user=%s">' . __('Delete', UAT_SLUG) . '</a>', $_REQUEST['page'], 'uat_delete', $item['ID']),
                 'overview'    => sprintf('<a href="?page=%s&user=%s">' . __('Overview', UAT_SLUG) . '</a>', 'uat-users', $item['ID']),
             );
 
             return sprintf('%1$s %2$s', $item['user_name'], $this->row_actions($actions) );
+        }
+
+        /**
+        * Process user deletion
+        *
+        * @param    $users array array of user ids
+        * @since    1.0.0
+        */
+        public function uat_process_user_delete($users) {
+            $dbobj = new UAT_Database_Management();
+            $dbobj->uat_delete_user($users);
         }
     }
 

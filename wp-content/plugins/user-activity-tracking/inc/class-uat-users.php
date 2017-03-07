@@ -44,7 +44,7 @@ if(!class_exists('UAT_Users')) :
 
 			if(is_array($valid_vals)) {
 				// Get cookie value
-				$valid_vals['cookie_val'] = $this->uat_set_user_cookie($valid_vals['user_email'], $valid_vals['user_name']);
+				$valid_vals['cookie_val'] = $this->uat_set_user_cookie($valid_vals['user_email'], $valid_vals['first_name'] . ' ' . $valid_vals['last_name']);
 
 				$user_id = $this->uat_insert_user($valid_vals);
 				if(is_numeric($user_id)) {
