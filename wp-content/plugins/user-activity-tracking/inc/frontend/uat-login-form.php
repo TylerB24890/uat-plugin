@@ -39,7 +39,6 @@
 
 					<input type="hidden" name="download-post" id="download-post" value="" />
 					<input type="hidden" name="download-type" id="download-type" value="" />
-					<input type="hidden" name="download-img" id="download-img" value="" />
 					<input type="hidden" name="download-url" id="download-url" value="" />
 					<input type="text" name="email2" id="email2" value="" autocomplete="off" />
 
@@ -57,7 +56,7 @@
 					<?php endif; ?>
 				</div>
 				<div class="modal-footer">
-					
+
 					<?php if($license && strlen($license) > 1) : ?>
 						<div id="agreement">
 							<div class="col-md-6 no-padding text-left">
@@ -86,7 +85,7 @@
 	$('a#print-tos').on('click', function(e) {
 		e.preventDefault();
 
-		$('<iframe>').hide().attr('src', '<?php echo UAT_GLOBAL_URL . 'inc/frontend/tos.htm'; ?>').appendTo("body");
+		//$('<iframe>').hide().attr('src', '<?php echo UAT_GLOBAL_URL . 'inc/frontend/tos.htm'; ?>').appendTo("body");
 	});
 })(jQuery);
 </script>

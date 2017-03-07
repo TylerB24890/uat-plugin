@@ -14,7 +14,7 @@
 	$('a').on('click', function(e) {
 
 		// If data-type attribute is found
-		if($(this).attr('data-type') || /(jpg|gif|png)$/.test($(this).attr('href'))) {
+		if($(this).attr('data-type')) {
 			e.preventDefault();
 
 			var dataType = '';
@@ -27,16 +27,10 @@
 			dataPost = $(this).data('post');
 			dataLink = $(this).attr('href');
 
-			if(dataType === 'image') {
-				dataImg = $(this).data('image');
-				dataLink = $(this).data('img-id');
-			}
-
 			// If the login modal is present then populate the hidden form fields
 			if($('#uat-modal').length && !$('body').hasClass('uat-logged')) {
 				$('#uat-login').find('input#download-post').val(dataPost);
 				$('#uat-login').find('input#download-type').val(dataType);
-				$('#uat-login').find('input#download-img').val(dataImg);
 				$('#uat-login').find('input#download-url').val(dataLink);
 			} else {
 				// Ajax request to save download data to database
@@ -44,18 +38,14 @@
 					url: uat.ajaxurl,
 					type: 'POST',
 					dataType: 'json',
-					data: { 'action': 'user_activity_download', 'type': dataType, 'post': dataPost, 'image': dataImg, 'link': dataLink },
+					data: { 'action': 'user_activity_download', 'type': dataType, 'post': dataPost, 'link': dataLink },
 					success: function(resp) {
 
 						// If there was a PHP error returned
 						if(resp.status == '0') {
 							alert(resp.msg);
 						} else {
-							if(dataType === 'image') {
-								openPhotoGallery(dataLink);
-							} else {
-								window.location.href = resp.url;
-							}
+							window.location.href = resp.url;
 						}
 					}
 				});

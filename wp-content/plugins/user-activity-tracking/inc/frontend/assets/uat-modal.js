@@ -9,9 +9,11 @@
 	'use strict';
 
 	// Add the modal launch attributes to download links
-    $('a.file-download, .post-img > a').each(function() {
-		$(this).attr('data-toggle', 'modal');
-		$(this).attr('data-target', '#uat-modal');
+    $('a').each(function() {
+		if($(this).data('type')) {
+			$(this).attr('data-toggle', 'modal');
+			$(this).attr('data-target', '#uat-modal');
+		}
     });
 
 	// On login form submission
@@ -47,18 +49,14 @@
 					msgCont.text(resp.message);
 				} else {
 					$('#uat-modal').modal('hide');
-					$('a.file-download, .post-img > a').each(function() {
+					$('a').each(function() {
 						$(this).removeAttr('data-toggle');
 						$(this).removeAttr('data-target');
 				    });
 
 					$('body').addClass('uat-logged');
 
-					if(dataType === 'image') {
-						openPhotoGallery(dataLink);
-					} else {
-						window.location.href = resp.url;
-					}
+					window.location.href = resp.url;
 				}
 			}
 		});
