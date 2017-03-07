@@ -257,7 +257,7 @@ if(!class_exists('UAT_Database_Management')) :
 
 			$user_data = $this->uat_get_user_by($user_id);
 
-			if($all_dls) {
+			if($all_dls && $user_data) {
 				return sprintf('<a href="?page=%s&user=%s">%s</a> (%s)', 'uat-downloads', $user_id, $user_data->first_name . ' ' . $user_data->last_name, $count[$user_id]);
 			}
 
