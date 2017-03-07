@@ -43,7 +43,6 @@ if(!class_exists('UAT_Admin_Users_List')) :
             $columns = $this->get_columns();
             $hidden = array();
             $sortable = array();
-            $this->process_bulk_action();
             $this->_column_headers = array($columns, $hidden, $sortable);
             $this->items = $this->uat_prepare_user_data($per_page);
         }
