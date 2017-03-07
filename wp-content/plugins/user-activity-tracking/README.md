@@ -17,3 +17,5 @@ This plugin is still in it's very early stages and is not recommended for use on
 5. Add custom styles/markup for modal window (currently relies on Bootstrap)
 6. Add ability to choose which types of documents to "gate"
 	* PDF, DOCX, RTF, HTML, JPG, PNG, GIF
+7. Add dynamic generation of License Agreement if entered.
+	* Automatically link the license agreement to the 'print' option.
