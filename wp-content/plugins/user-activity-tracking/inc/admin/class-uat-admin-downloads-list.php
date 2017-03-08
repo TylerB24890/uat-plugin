@@ -111,14 +111,7 @@ if(!class_exists('UAT_Admin_Downloads_List')) :
                     $display_array['user_email'] = sprintf('<a href="mailto:%s">%s</a>', $user->user_email, $user->user_email);
                     $display_array['user_org'] = $user->user_org;
 
-                    if($data->doc_type === 'image') {
-                        $display_array['file'] = sprintf('<a href="%s" target="_blank">%s</a>', wp_get_attachment_url($data->doc_id), get_the_title($data->doc_id));
-                    } else {
-                        // Get doc title
-                        $doc = get_post_meta($data->doc_post, '_' . $data->doc_type, true);
-                        $display_array['file'] = sprintf('<a href="%s" target="_blank">%s</a>', get_document_url($doc), $doc);
-                        $display_array['file_url'] = get_document_url($doc);
-                    }
+                    $display_array['file'] = sprintf('<a href="%s" target="_blank">%s</a>', wp_get_attachment_url($data->doc_id), get_the_title($data->doc_id));
 
                     $display_array['type'] = sprintf('<a href="?page=%s&type=%s">%s</a>', 'uat-downloads', strtolower($data->doc_type), strtoupper($data->doc_type));
                     $display_array['type_raw'] = $data->doc_type;

@@ -27,6 +27,10 @@
 			dataPost = $(this).data('post');
 			dataLink = $(this).attr('href');
 
+			if(dataType === 'image') {
+				dataLink = $(this).data('url');
+			}
+
 			// If the login modal is present then populate the hidden form fields
 			if($('#uat-modal').length && !$('body').hasClass('uat-logged')) {
 				$('#uat-login').find('input#download-post').val(dataPost);

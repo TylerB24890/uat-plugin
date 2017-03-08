@@ -48,8 +48,14 @@ if(!class_exists('UAT_Users')) :
 
 				$user_id = $this->uat_insert_user($valid_vals);
 				if(is_numeric($user_id)) {
-					if($vals['download-img'] == 0 || $vals['download-img'] === null) {
-						$vals['download-img'] = null;
+					if($vals['download-type'] == 'image') {
+						$post_table = $this->wpdb->prefix . 'posts';
+						$dl_url = $vals['download-url'];
+						$sql = "SELECT ID FROM $post_table WHERE guid = '$dl_url'";
+						$attach = $this->wpdb->get_col($sql);
+						$vals['download-img'] = $attach[0];
+					} else {
+						$vals['download-img'] = NULL;
 					}
 					$sqlv = array(
 						'user_id' => $user_id,

@@ -45,8 +45,14 @@ if(!class_exists('UAT_Downloads')) :
 
 					$file_type = $_POST['type'];
 					$post_id = $_POST['post'];
-					$img = $_POST['image'];
 					$link = $_POST['link'];
+
+					if(strtolower($file_type) === 'image') {
+						$post_table = $this->wpdb->prefix . 'posts';
+						$sql = "SELECT ID FROM $post_table WHERE guid = '$link'";
+						$attach = $this->wpdb->get_col($sql);
+						$img = $attach[0];
+					}
 
 					if($file_type == 'image' && !is_numeric($img)) {
 						$error = true;

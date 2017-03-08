@@ -112,6 +112,8 @@ if(!class_exists('UAT')) :
 						case 'png':
 						case 'gif':
 							$(this).attr('data-type', 'image');
+							$(this).attr('data-url', target);
+							$(this).attr('href', 'javascript:void(0);');
 						break;
 						case 'pdf':
 							$(this).attr('data-type', 'pdf');
