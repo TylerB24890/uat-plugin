@@ -88,6 +88,7 @@ if(!class_exists('UAT_Downloads')) :
 			if($error !== true && $this->uat_insert_download_record($sqlv)) {
 				$return['status'] = '1';
 				$return['url'] = $link;
+				$return['user_cookie'] = $cookie_val;
 				$this->_ajax_resp($return);
 			} else {
 				$error = true;
