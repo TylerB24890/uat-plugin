@@ -63,6 +63,7 @@ if(!class_exists('UAT_Users')) :
 						'doc_type' => $vals['download-type'],
 						'doc_post' => $vals['download-post'],
 						'link' => $vals['download-url'],
+						'user_cookie' => $valid_vals['cookie_val']
 					);
 
 					$dlobj = new UAT_Downloads();
@@ -206,7 +207,6 @@ if(!class_exists('UAT_Users')) :
 				$cookie_val = $this->_uat_generate_cookie($email, $name);
 			}
 
-			setcookie(UAT_COOKIE, $cookie_val, time() + (10 * 365 * 24 * 60 * 60), COOKIEPATH);
 			return $cookie_val;
 		}
 

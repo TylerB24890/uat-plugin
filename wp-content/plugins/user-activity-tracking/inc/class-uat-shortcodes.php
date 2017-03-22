@@ -53,7 +53,7 @@ if(!class_exists('UAT_Shortcodes')) :
 
 				wp_enqueue_script( 'uat-bootstrap-js', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', array('jquery'), '1.0.0', true );
 			}
-			wp_enqueue_script( 'uat-modal-js', UAT_GLOBAL_URL . 'inc/frontend/assets/uat-modal.js', array('jquery', 'uat-bootstrap-js', 'uat-js'), '1.0.0', true );
+			wp_enqueue_script( 'uat-modal-js', UAT_GLOBAL_URL . 'inc/frontend/assets/uat-modal.js', array('jquery', 'uat-bootstrap-js', 'uat-js', 'uat-jquery-cookie'), '1.0.0', true );
 			include_once(UAT_GLOBAL_DIR . 'inc/frontend/uat-login-form.php');
 		}
 

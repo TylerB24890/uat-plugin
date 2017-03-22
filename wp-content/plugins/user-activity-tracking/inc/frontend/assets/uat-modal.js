@@ -8,13 +8,17 @@
 (function($) {
 	'use strict';
 
-	// Add the modal launch attributes to download links
-    $('a').each(function() {
-		if($(this).data('type')) {
-			$(this).attr('data-toggle', 'modal');
-			$(this).attr('data-target', '#uat-modal');
-		}
-    });
+	var uat_cookie = Cookies.get('uat_logged');
+
+	if(typeof uat_cookie === 'undefined' || uat_cookie.length < 1) {
+		// Add the modal launch attributes to download links
+	    $('a').each(function() {
+			if($(this).data('type')) {
+				$(this).attr('data-toggle', 'modal');
+				$(this).attr('data-target', '#uat-modal');
+			}
+	    });
+	}
 
 	// On login form submission
 	$('form#uat-login').on('submit', function(e) {
@@ -30,7 +34,7 @@
 			url: uat.ajaxurl,
 			type: 'POST',
 			dataType: 'json',
-			data: { 'action': 'user_activity_login', 'userData': userData, 'nonce': uat.uat_nonce },
+			data: { 'action': 'user_activity_login', 'userData': userData },
 			success: function(resp) {
 				$('form#uat-login').each(function() {
 					this.reset();
@@ -53,6 +57,8 @@
 						$(this).removeAttr('data-toggle');
 						$(this).removeAttr('data-target');
 				    });
+
+					Cookies.set('uat_logged', resp.user_cookie, { expires: 3650, path: '/' });
 
 					$('body').addClass('uat-logged');
 

@@ -38,8 +38,9 @@ if(!class_exists('UAT_Downloads')) :
 			$error = false;
 
 			if(empty($sqlv)) {
-				$cookie_val = $this->uat_check_user_cookie();
-				if($cookie_val) {
+				$cookie_val = $_POST['user_cookie'];
+
+				if($cookie_val && strlen($cookie_val) > 3) {
 					$user = $this->uat_get_user_by(null, null, strval($cookie_val));
 					$user_id = $user->id;
 
@@ -74,7 +75,13 @@ if(!class_exists('UAT_Downloads')) :
 					$error = true;
 				}
 			} else {
+				// Get the cookie value
+				$cookie_val = $sqlv['user_cookie'];
+				// Get the file link
 				$link = $sqlv['link'];
+
+				// Unset cookie and link from sql statement
+				unset($sqlv['user_cookie']);
 				unset($sqlv['link']);
 			}
 

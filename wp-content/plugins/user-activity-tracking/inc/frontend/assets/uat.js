@@ -10,11 +10,24 @@
 (function($) {
 	'use strict';
 
+	var uat_cookie = Cookies.get('uat_logged');
+
+	if(typeof uat_cookie != 'undefined' && uat_cookie.length > 1) {
+		if(!$('body').hasClass('uat-logged')) {
+			$('body').addClass('uat-logged');
+		}
+	}
+
 	// Detect link click
 	$('a').on('click', function(e) {
 
 		// If data-type attribute is found
 		if($(this).attr('data-type')) {
+
+			if(typeof uat_cookie === 'undefined' || uat_cookie.length < 1) {
+				uat_cookie = Cookies.get('uat_logged');
+			}
+
 			e.preventDefault();
 
 			var dataType = '';
@@ -42,7 +55,7 @@
 					url: uat.ajaxurl,
 					type: 'POST',
 					dataType: 'json',
-					data: { 'action': 'user_activity_download', 'type': dataType, 'post': dataPost, 'link': dataLink },
+					data: { 'action': 'user_activity_download', 'type': dataType, 'post': dataPost, 'link': dataLink, 'user_cookie': uat_cookie },
 					success: function(resp) {
 
 						// If there was a PHP error returned
